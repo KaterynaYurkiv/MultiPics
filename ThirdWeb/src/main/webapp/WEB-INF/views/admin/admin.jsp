@@ -19,6 +19,7 @@
 					<li><a href="/admin/size">Size</a></li>
 					<li><a href="/admin/ioc">Item of clothing</a></li>
 					<li><a href="/admin/customer">Customer</a></li>
+					<li><a href="/admin/image">Image</a></li>
 				</ul>
 			</div>
 		</div>

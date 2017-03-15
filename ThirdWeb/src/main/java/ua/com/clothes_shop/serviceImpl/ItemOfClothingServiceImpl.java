@@ -8,6 +8,10 @@ import java.util.List;
 
 
 
+
+
+
+
 //import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,12 +24,19 @@ import org.springframework.stereotype.Service;
 
 
 
+
+import org.springframework.web.multipart.MultipartFile;
+
+import ua.com.clothes_shop.service.FileWriter;
+import ua.com.clothes_shop.service.FileWriter.Folder;
 import ua.com.clothes_shop.dao.ColorDao;
+import ua.com.clothes_shop.dao.ImageDao;
 import ua.com.clothes_shop.dao.ItemOfClothingDao;
 import ua.com.clothes_shop.dto.filter.ItemOfClothingFilter;
 import ua.com.clothes_shop.dto.form.ItemOfClothingForm;
 import ua.com.clothes_shop.entity.Brand;
 import ua.com.clothes_shop.entity.Color;
+import ua.com.clothes_shop.entity.Image;
 import ua.com.clothes_shop.entity.ItemName;
 import ua.com.clothes_shop.entity.ItemOfClothing;
 import ua.com.clothes_shop.entity.Size;
@@ -42,6 +53,12 @@ public class ItemOfClothingServiceImpl implements ItemOfClothingService{
 	
 	@Autowired
 	private ColorDao colorDao;
+	
+	@Autowired
+	private ImageDao imageDao;
+	
+	@Autowired
+	private FileWriter fileWriter;
 
 	@Override
 	public void save(ItemOfClothingForm form) {
@@ -55,7 +72,16 @@ public class ItemOfClothingServiceImpl implements ItemOfClothingService{
 		entity.setSize(form.getSize());
 		entity.setTargetAudience(form.getTargetAudience());
 		entity.setTypeOfClothing(form.getTypeOfClothing());
-		itemOfClothingDao.save(entity);
+//		itemOfClothingDao.save(entity);
+		entity = itemOfClothingDao.saveAndFlush(entity);
+		Image image = new Image();
+		image.setItemOfClothing(entity);
+		image = imageDao.saveAndFlush(image);
+		MultipartFile file = form.getFile();
+		if(fileWriter.write(Folder.CLOTHES, file, image.getId())){
+		image.setVersion(image.getVersion()+1);
+		imageDao.save(image);
+		}
 	}
 
 //	@Override

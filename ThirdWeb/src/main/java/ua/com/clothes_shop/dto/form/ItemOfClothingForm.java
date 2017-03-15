@@ -1,5 +1,7 @@
 package ua.com.clothes_shop.dto.form;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import ua.com.clothes_shop.entity.Brand;
 import ua.com.clothes_shop.entity.Color;
 import ua.com.clothes_shop.entity.ItemName;
@@ -29,6 +31,15 @@ public class ItemOfClothingForm {
 	private Color color;
 
 	private Size size;
+	
+	private MultipartFile file;
+
+	public MultipartFile getFile() {
+			return file;
+	 }
+	 public void setFile(MultipartFile file) {
+	 		this.file = file;
+	 }
 
 	public int getId() {
 		return id;
