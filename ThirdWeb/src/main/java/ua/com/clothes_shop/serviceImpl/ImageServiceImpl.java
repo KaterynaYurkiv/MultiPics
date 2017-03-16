@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import ua.com.clothes_shop.dao.ImageDao;
@@ -15,6 +16,7 @@ import ua.com.clothes_shop.service.FileWriter;
 import ua.com.clothes_shop.service.ImageService;
 import ua.com.clothes_shop.service.FileWriter.Folder;
 
+@Service
 public class ImageServiceImpl implements ImageService{
 	
 	@Autowired

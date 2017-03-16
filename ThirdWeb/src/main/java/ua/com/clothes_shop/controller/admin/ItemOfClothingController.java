@@ -34,6 +34,7 @@ import ua.com.clothes_shop.entity.TargetAudience;
 import ua.com.clothes_shop.entity.TypeOfClothing;
 import ua.com.clothes_shop.service.BrandService;
 import ua.com.clothes_shop.service.ColorService;
+import ua.com.clothes_shop.service.ImageService;
 import ua.com.clothes_shop.service.ItemNameService;
 import ua.com.clothes_shop.service.ItemOfClothingService;
 import ua.com.clothes_shop.service.SizeService;
@@ -69,6 +70,9 @@ public class ItemOfClothingController {
 	@Autowired
 	private SizeService sizeService;
 	
+	@Autowired
+	private ImageService imageService;
+	
 	@InitBinder("itemOfClothing")
 	protected void bind(WebDataBinder binder){
 		binder.registerCustomEditor(Brand.class, new BrandEditor(brandService));
@@ -102,6 +106,7 @@ public class ItemOfClothingController {
 		model.addAttribute("typesOfClothing", typeOfClothingService.findAll());
 		model.addAttribute("colors", colorService.findAll());
 		model.addAttribute("sizes", sizeService.findAll());
+		model.addAttribute("images", imageService.findAll());
 		return "admin-itemOfClothing";
 	}
 	

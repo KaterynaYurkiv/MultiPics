@@ -13,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -60,7 +59,10 @@ public class ItemOfClothing {
 		inverseJoinColumns=@JoinColumn(name="id_customer"))
 		private List<Customer> customers = new ArrayList<>();
 		
-		@OneToMany(mappedBy="itemOfClothing")
+		@ManyToMany
+		@JoinTable(name="item_image_connection",
+		joinColumns=@JoinColumn(name="id_item_of_clothing"),
+		inverseJoinColumns=@JoinColumn(name="id_image"))
 		private List<Image> images = new ArrayList<>();
 		
 		public List<Image> getImages() {

@@ -72,14 +72,15 @@ public class ItemOfClothingServiceImpl implements ItemOfClothingService{
 		entity.setSize(form.getSize());
 		entity.setTargetAudience(form.getTargetAudience());
 		entity.setTypeOfClothing(form.getTypeOfClothing());
+		entity.setImages(form.getImages());
 //		itemOfClothingDao.save(entity);
 		entity = itemOfClothingDao.saveAndFlush(entity);
 		Image image = new Image();
-		image.setItemOfClothing(entity);
-		image = imageDao.saveAndFlush(image);
+//		image.setItemsOfClothing(entity);
 		MultipartFile file = form.getFile();
 		if(fileWriter.write(Folder.CLOTHES, file, image.getId())){
 		image.setVersion(image.getVersion()+1);
+		image.getItemsOfClothing().add(entity);
 		imageDao.save(image);
 		}
 	}
@@ -168,6 +169,7 @@ public class ItemOfClothingServiceImpl implements ItemOfClothingService{
 		form.setTypeOfClothing(entity.getTypeOfClothing());
 		form.setSize(entity.getSize());
 		form.setColor(entity.getColor());
+		form.setImages(entity.getImages());
 		return form;
 	}
 

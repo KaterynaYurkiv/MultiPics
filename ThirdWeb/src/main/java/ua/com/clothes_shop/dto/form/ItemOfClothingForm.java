@@ -1,9 +1,12 @@
 package ua.com.clothes_shop.dto.form;
 
+import java.util.List;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import ua.com.clothes_shop.entity.Brand;
 import ua.com.clothes_shop.entity.Color;
+import ua.com.clothes_shop.entity.Image;
 import ua.com.clothes_shop.entity.ItemName;
 import ua.com.clothes_shop.entity.Size;
 import ua.com.clothes_shop.entity.TargetAudience;
@@ -32,6 +35,15 @@ public class ItemOfClothingForm {
 
 	private Size size;
 	
+	private List<Image> images;
+	
+	public List<Image> getImages() {
+		return images;
+	}
+	public void setImages(List<Image> images) {
+		this.images = images;
+	}
+
 	private MultipartFile file;
 
 	public MultipartFile getFile() {

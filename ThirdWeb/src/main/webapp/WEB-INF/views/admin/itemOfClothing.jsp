@@ -275,7 +275,9 @@
 			<c:forEach items="${page.content}" var="itemOfClothing">
 				<div class="row">
 <!-- 					тут все так само як на сервлетах -->
-                    <div class="col-md-1 col-xs-1"><img src="/images/clothes/${image.id}.jpg?version=${image.version}" width="100%"></div>
+<%--                     <c:forEach items="${itemOfClothing.images}" var="image"> --%>
+                          <div class="col-md-1 col-xs-1"><img src="/images/clothes/${image.id}.jpg?version=${image.version}" width="100%"></div>
+<%--                     </c:forEach>  --%>
 					<div class="col-md-1 col-xs-1">${itemOfClothing.itemName.name}</div>
 					<div class="col-md-1 col-xs-1">${itemOfClothing.marking}</div>
 					<div class="col-md-1 col-xs-1">${itemOfClothing.price}</div>
